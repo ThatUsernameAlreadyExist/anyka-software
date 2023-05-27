@@ -2,14 +2,13 @@
 . ./build_helpers.sh
 
 
-VERSION="0.3.7"
-SRC_DIR="v4l2rtspserver-${VERSION}"
+SRC_DIR="anyka-v4l2rtspserver-main"
 RESULT_FILES="bin/v4l2rtspserver"
 
 makeDir "$LIBRARY_PATH"
-printBuildInfo "v4l2rtspserver" "${VERSION}" 
+printBuildInfo "anyka-v4l2rtspserver" "main" 
 removeMustBuildFiles ${RESULT_FILES}   
-downloadSources "https://github.com/mpromonet/v4l2rtspserver/archive/refs/tags/v${VERSION}.tar.gz" "$SRC_DIR"
+downloadSources "https://github.com/ThatUsernameAlreadyExist/anyka-v4l2rtspserver/archive/refs/heads/main.zip" "$SRC_DIR" "zip"
 
 cd $SRC_DIR
 
@@ -29,14 +28,7 @@ echo "add_definitions(-DHAVE_ALSA)" >> $TFILE
 
 export LDFLAGS="${LDFLAGS} -L${LIBRARY_PATH} -lak_mt -lakaudiocodec -lakaudiofilter -lakispsdk -lakmedialib -lakuio -lakv_encode -lmpi_aenc -lmpi_md -lmpi_osd -lmpi_venc -lplat_ai -lplat_ao -lplat_common -lplat_ipcsrv -lplat_thread -lplat_venc_cb -lplat_vi -lplat_vpss"
 
-#temp remove find openssl (no WITH_SSL in current project version)
-sed -e '/find_package(OpenSSL QUIET)/c\#find_package(OpenSSL QUIET)' -i CMakeLists.txt
-
-rm -rf "./libv4l2cpp"
-cp -r "../Anyka/anyka_libv4l2cpp" "./libv4l2cpp"
-cp -f "../Anyka/anyka_libv4l2cpp/audio/ALSACapture.cpp" "src/ALSACapture.cpp"
-cp -f "../Anyka/anyka_libv4l2cpp/audio/ALSACapture.h" "inc/ALSACapture.h"
-cp -a -r "../Anyka/anyka_libs/." "${LIBRARY_PATH}"
+cp -a -r "libs/." "${LIBRARY_PATH}"
 
 cmake -DWITH_SSL=OFF -DCMAKE_TOOLCHAIN_FILE="${TFILE}" -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
     -DCMAKE_INSTALL_LIBDIR="${INSTALL_DIR}/lib" -DCMAKE_INSTALL_INCLUDEDIR="${INSTALL_DIR}/include"

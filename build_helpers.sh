@@ -3,14 +3,14 @@
 START_DIR=$PWD
 WORK_DIR=$PWD
 INSTALL_DIR="${START_DIR}/INSTALL"
-TOOLCHAIN=$(pwd)/../usr/bin
+TOOLCHAIN=$(pwd)/arm-anykav200-crosstool/usr/bin
 HOST="arm-anykav200-linux-uclibcgnueabi"
 CROSS_COMPILE=$TOOLCHAIN/${HOST}-
 export CC=${CROSS_COMPILE}gcc
 export LD=${CROSS_COMPILE}ld
 export AR=${CROSS_COMPILE}ar
 export STRIP=${CROSS_COMPILE}strip
-export CFLAGS="-muclibc -O3 -std=c99"
+export CFLAGS="-muclibc -O3"
 export CPPFLAGS="-muclibc -O3 -std=c++11"
 export LDFLAGS="-muclibc -O3 -lrt -lstdc++ -lpthread -ldl"
 export LIBRARY_PATH="${INSTALL_DIR}/lib"
