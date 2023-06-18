@@ -14,7 +14,7 @@ cd $SRC_DIR
 
 ./autogen.sh
 
-LIGHTTPD_STATIC=yes CPPFLAGS=-DLIGHTTPD_STATIC ./configure --prefix=${INSTALL_DIR} --host=${HOST} --without-mysql --without-zlib --without-bzip2 --disable-ipv6 --without-pcre2 --enable-static --disable-shared --with-openssl -with-openssl-includes=${INSTALL_DIR}/include --with-openssl-libs=${INSTALL_DIR}/lib
+LIGHTTPD_STATIC=yes CPPFLAGS=-DLIGHTTPD_STATIC PCRE2CONFIG=${INSTALL_DIR}/bin/pcre2-config ./configure --prefix=${INSTALL_DIR} --host=${HOST} --without-mysql --without-zlib --without-bzip2 --disable-ipv6 --with-pcre2 --enable-static --disable-shared --with-openssl -with-openssl-includes=${INSTALL_DIR}/include --with-openssl-libs=${INSTALL_DIR}/lib
 
 echo "PLUGIN_INIT(mod_auth)" > src/plugin-static.h
 echo "PLUGIN_INIT(mod_redirect)" >> src/plugin-static.h 
