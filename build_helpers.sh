@@ -11,8 +11,8 @@ export LD=${CROSS_COMPILE}ld
 export AR=${CROSS_COMPILE}ar
 export STRIP=${CROSS_COMPILE}strip
 export CFLAGS="-muclibc -O3"
-export CPPFLAGS="-muclibc -O3 -std=c++11"
-export LDFLAGS="-muclibc -O3 -lrt -lstdc++ -lpthread -ldl"
+export CPPFLAGS="-muclibc -O3"
+export LDFLAGS="-muclibc -O3 -lrt -lpthread -ldl"
 export LIBRARY_PATH="${INSTALL_DIR}/lib"
 export BINARY_PATH="${INSTALL_DIR}/bin"
 

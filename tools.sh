@@ -14,10 +14,13 @@ rm -f getflag
 rm -f files-min-recorder
 rm -f rwconf
 
-${CC} ${CPPFLAGS} -DBUILD_GETIMAGE=1         -I"inc/" -o getimage src/GetImage.cpp src/SharedMemory.cpp         ${LDFLAGS}
-${CC} ${CPPFLAGS} -DBUILD_SETCONF=1          -I"inc/" -o setconf  src/SetSharedConfig.cpp src/SharedMemory.cpp  ${LDFLAGS}
-${CC} ${CPPFLAGS} -DBUILD_GETFLAG=1          -I"inc/" -o getflag  src/GetFlag.cpp src/SharedMemory.cpp          ${LDFLAGS}
-${CC} ${CPPFLAGS} -DBUILD_RWCONFIG=1         -I"inc/" -o rwconf  src/ReadWriteConfig.cpp src/ConfigFile.cpp     ${LDFLAGS}
+CPPLDFLAGS="${LDFLAGS} -lstdc++"
+CPPCOMPFLAGS="${CPPFLAGS} -std=c++11"
+
+${CC} ${CPPCOMPFLAGS} -DBUILD_GETIMAGE=1         -I"inc/" -o getimage src/GetImage.cpp src/SharedMemory.cpp         ${CPPLDFLAGS}
+${CC} ${CPPCOMPFLAGS} -DBUILD_SETCONF=1          -I"inc/" -o setconf  src/SetSharedConfig.cpp src/SharedMemory.cpp  ${CPPLDFLAGS}
+${CC} ${CPPCOMPFLAGS} -DBUILD_GETFLAG=1          -I"inc/" -o getflag  src/GetFlag.cpp src/SharedMemory.cpp          ${CPPLDFLAGS}
+${CC} ${CPPCOMPFLAGS} -DBUILD_RWCONFIG=1         -I"inc/" -o rwconf  src/ReadWriteConfig.cpp src/ConfigFile.cpp     ${CPPLDFLAGS}
 ${CC} ${CFLAGS} -std=c99 -DBUILD_GETRECORDEDFILES=1 -I"inc/" -o files-min-recorder src/GetRecordedFiles.c       ${LDFLAGS}
 
 ${STRIP} ./getimage

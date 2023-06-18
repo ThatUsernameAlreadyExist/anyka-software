@@ -23,10 +23,10 @@ echo "set(THREADS_PTHREAD_ARG \"2\" CACHE STRING \"Forcibly set by CMakeLists.tx
 echo "set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)" >> $TFILE
 echo "set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)" >> $TFILE
 echo "set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)" >> $TFILE
-echo "SET(CMAKE_CXX_COMPILER ${CC} -DNO_OPENSSL=1)" >> $TFILE
+echo "SET(CMAKE_CXX_COMPILER ${CC} -DNO_OPENSSL=1 -std=c++11)" >> $TFILE
 echo "add_definitions(-DHAVE_ALSA)" >> $TFILE
 
-export LDFLAGS="${LDFLAGS} -L${LIBRARY_PATH} -lak_mt -lakaudiocodec -lakaudiofilter -lakispsdk -lakmedialib -lakuio -lakv_encode -lmpi_aenc -lmpi_md -lmpi_osd -lmpi_venc -lplat_ai -lplat_ao -lplat_common -lplat_ipcsrv -lplat_thread -lplat_venc_cb -lplat_vi -lplat_vpss"
+export LDFLAGS="${LDFLAGS} -L${LIBRARY_PATH} -lak_mt -lakaudiocodec -lakaudiofilter -lakispsdk -lakmedialib -lakuio -lakv_encode -lmpi_aenc -lmpi_md -lmpi_osd -lmpi_venc -lplat_ai -lplat_ao -lplat_common -lplat_ipcsrv -lplat_thread -lplat_venc_cb -lplat_vi -lplat_vpss -lstdc++"
 
 cp -a -r "libs/." "${LIBRARY_PATH}"
 
