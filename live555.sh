@@ -8,7 +8,7 @@ RESULT_FILES="lib/libliveMedia.so lib/libBasicUsageEnvironment.so lib/libgroupso
 makeDir "$INSTALL_DIR"
 printBuildInfo "live555" "latest"
 removeMustBuildFiles ${RESULT_FILES}   
-downloadSources "http://www.live555.com/liveMedia/public/live555-latest.tar.gz" "$SRC_DIR"
+downloadSources "https://download.live555.com/live555-latest.tar.gz" "$SRC_DIR"
 
 cd $SRC_DIR
 CONFIG_FILE="config.anyka"
